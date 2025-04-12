@@ -157,6 +157,9 @@ MonoBehaviour:
   jumpHeight: 2
   cam: {fileID: 395296501}
   mouseSensitivity: 100
+  bulletPrefab: {fileID: 1695004510563160196, guid: 4e7c149eb3629954ba7455e1c189de68,
+    type: 3}
+  bulletSpawn: {fileID: 1387456178}
 --- !u!143 &366383055
 CharacterController:
   m_ObjectHideFlags: 0
@@ -443,6 +446,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1387456177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1387456178}
+  m_Layer: 0
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1387456178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387456177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 1.055, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1466492835}
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
 --- !u!1 &1466492834
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +507,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.243, z: 0.39999962}
   m_LocalScale: {x: 0.2, y: 0.3, z: 0.20000002}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1387456178}
   m_Father: {fileID: 395296501}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &1466492836

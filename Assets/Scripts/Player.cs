@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float jumpHeight = 2f;
     public Transform cam;
     public float mouseSensitivity = 100f;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
     {
         handleMouse();
         handleMovement();
+        Shoot();
     }
 
     void handleMouse()
@@ -73,5 +76,13 @@ public class Player : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void Shoot()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        }
     }
 }
