@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
     public Transform bulletSpawn1;
     public Transform bulletSpawn2;
     public float playerHealth = 100f;
+    public float range = 100f;
+    public LayerMask hitMask;
+    public Transform hitScanStart;
+    public float radius = 0.5f;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -97,8 +101,29 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && gunCanShoot)
         {
-            GameObject bullet1 = Instantiate(bulletPrefab, bulletSpawn1.position, bulletSpawn1.rotation);
-            GameObject bullet2 = Instantiate(bulletPrefab, bulletSpawn2.position, bulletSpawn2.rotation);
+            Ray ray = new Ray(hitScanStart.transform.position, hitScanStart.transform.forward);
+            RaycastHit hit;
+
+            if (Physics.SphereCast(ray, radius, out hit, range, hitMask))
+            {
+                GoonMain enemy = hit.collider.GetComponent<GoonMain>();
+                if (enemy != null)
+                {
+                    enemy.HitByRay();
+                }
+                HellBossStalkShot hellBossStalk = hit.collider.GetComponent<HellBossStalkShot>();
+                if (hellBossStalk != null)
+                {
+                    hellBossStalk.HitByRay();
+                }
+                HellBossEyeShot hellBossEye = hit.collider.GetComponent<HellBossEyeShot>();
+                if (hellBossEye != null)
+                {
+                    hellBossEye.HitByRay();
+                }
+
+            }
+
             gunCanShoot = false;
             Invoke("GunTimer", 0.3f);
         }
@@ -109,13 +134,14 @@ public class Player : MonoBehaviour
         gunCanShoot = true;
     }
 
-    /*void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Beam"))
+        if (collision.CompareTag("GoonBeam"))
         {
+            Destroy(collision.gameObject);
             playerHealth -= 5f;
         }
-    }*/
+    }
 
     void Die() {
         cam.localRotation = Quaternion.Euler(0f, 0f, 90f);

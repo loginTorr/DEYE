@@ -42,12 +42,12 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
     public void EyeHit()
     {
-        health -= 10f;
+        health -= 20f;
     }
 
     public void StalkHit()
     {
-        health -= 5f;
+        health -= 10f;
     }
 
 }

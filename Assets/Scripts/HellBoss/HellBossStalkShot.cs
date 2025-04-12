@@ -24,4 +24,9 @@ public class HellBossStalkShot : MonoBehaviour
             HellBoss_EyeStalk.HellBossInstance.StalkHit();
         }
     }
+
+    public void HitByRay()
+    {   
+        HellBoss_EyeStalk.HellBossInstance.StalkHit();
+    }
 }
