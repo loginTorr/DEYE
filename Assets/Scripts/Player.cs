@@ -10,12 +10,14 @@ public class Player : MonoBehaviour
     public Transform cam;
     public float mouseSensitivity = 100f;
     public GameObject bulletPrefab;
-    public Transform bulletSpawn;
+    public Transform bulletSpawn1;
+    public Transform bulletSpawn2;
 
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
     private bool DoubleJumpReady;
+    private bool gunCanShoot = true;
     private float xRotation = 0f;
 
     // Start is called before the first frame update
@@ -80,9 +82,17 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && gunCanShoot)
         {
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            GameObject bullet1 = Instantiate(bulletPrefab, bulletSpawn1.position, bulletSpawn1.rotation);
+            GameObject bullet2 = Instantiate(bulletPrefab, bulletSpawn2.position, bulletSpawn2.rotation);
+            gunCanShoot = false;
+            Invoke("GunTimer", 0.3f);
         }
+    }
+
+    void GunTimer()
+    {
+        gunCanShoot = true;
     }
 }

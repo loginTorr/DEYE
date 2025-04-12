@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         bulletRB = GetComponent<Rigidbody>();
-        bulletSpawn = GameObject.Find("BulletSpawn");
+        bulletSpawn = GameObject.Find("BulletSpawn1");
         bulletRB.velocity = bulletSpawn.transform.forward * speed;
         Destroy(gameObject, lifetime);
     }
