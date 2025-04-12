@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawn1;
     public Transform bulletSpawn2;
+    public float playerHealth = 100f;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -26,14 +28,25 @@ public class Player : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        //Invoke("KillPlayer", 3f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        handleMouse();
-        handleMovement();
-        Shoot();
+        if (playerHealth > 0)
+        {
+            handleMouse();
+            handleMovement();
+            Shoot();
+        }
+
+        if (playerHealth <= 0)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            Die();
+        }
     }
 
     void handleMouse()
@@ -94,5 +107,27 @@ public class Player : MonoBehaviour
     void GunTimer()
     {
         gunCanShoot = true;
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Beam"))
+        {
+            playerHealth -= 5f;
+        }
+    }
+
+    void Die() {
+        cam.localRotation = Quaternion.Euler(0f, 0f, 90f);
+        cam.localPosition = new Vector3(0f, -0.5f, 0f);
+        Invoke("LoadGameOver", 2f);
+    }
+
+    void KillPlayer() {
+        playerHealth -= 100f;
+    }
+
+    void LoadGameOver() {
+        SceneManager.LoadScene("GameOverScene");    
     }
 }
