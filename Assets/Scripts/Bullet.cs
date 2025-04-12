@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 15f;
+    public float speed = 30f;
     public float lifetime = 5f;
     public GameObject bulletSpawn;
 
@@ -19,8 +19,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    void Update()
+    void OnTriggerExit(Collider collision)
     {
+        if (collision.CompareTag("Bounds"))
+        {
+            Destroy(gameObject);
+        }
     }
-
 }
