@@ -109,13 +109,14 @@ public class Player : MonoBehaviour
         gunCanShoot = true;
     }
 
-    /*void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Beam"))
+        if (collision.CompareTag("GoonBeam"))
         {
-            playerHealth -= 5f;
+            Destroy(collision.gameObject);
+            playerHealth -= 10f;
         }
-    }*/
+    }
 
     void Die() {
         cam.localRotation = Quaternion.Euler(0f, 0f, 90f);
