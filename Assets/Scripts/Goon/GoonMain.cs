@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoonMain : MonoBehaviour
 {
-    public float health = 60f;
+    public float health = 30f;
     public float speed = 10f;
     public float minDist = 5f;
     public float maxDist = 40f;
@@ -53,15 +53,6 @@ public class GoonMain : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            Destroy(collision.gameObject);
-            health -= 10f;
-        }
-    }
-
     void FireBeam()
     {
         GameObject goonBeam = Instantiate(goonBeamPrefab, eyeball.position, eyeball.rotation);
@@ -72,5 +63,10 @@ public class GoonMain : MonoBehaviour
     void ReadyBeam()
     {
         beamReady = true;
+    }
+
+    public void HitByRay()
+    {
+        health -= 10f;
     }
 }
