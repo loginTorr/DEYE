@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -10,14 +11,11 @@ public class Player : MonoBehaviour
     public float jumpHeight = 2f;
     public Transform cam;
     public float mouseSensitivity = 100f;
-    public GameObject bulletPrefab;
-    public Transform bulletSpawn1;
-    public Transform bulletSpawn2;
     public float playerHealth = 100f;
     public float range = 100f;
     public LayerMask hitMask;
-    public Transform hitScanStart;
     public float radius = 0.5f;
+    public TextMeshProUGUI txtHealth;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -51,6 +49,8 @@ public class Player : MonoBehaviour
             Cursor.visible = true;
             Die();
         }
+
+        txtHealth.text = playerHealth.ToString("000");
     }
 
     void handleMouse()
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && gunCanShoot)
         {
-            Ray ray = new Ray(hitScanStart.transform.position, hitScanStart.transform.forward);
+            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
             RaycastHit hit;
 
             if (Physics.SphereCast(ray, radius, out hit, range, hitMask))
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
             }
 
             gunCanShoot = false;
-            Invoke("GunTimer", 0.3f);
+            Invoke("GunTimer", 0.5f);
         }
     }
 
