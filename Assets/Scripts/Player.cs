@@ -14,8 +14,9 @@ public class Player : MonoBehaviour
     public float playerHealth = 100f;
     public float range = 100f;
     public LayerMask hitMask;
-    public float radius = 0.5f;
+    public float radius = 0.75f;
     public TextMeshProUGUI txtHealth;
+    public GameObject fireIndicator;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -123,7 +124,7 @@ public class Player : MonoBehaviour
                 }
 
             }
-
+            fireIndicator.SetActive(false);
             gunCanShoot = false;
             Invoke("GunTimer", 0.5f);
         }
@@ -132,6 +133,7 @@ public class Player : MonoBehaviour
     void GunTimer()
     {
         gunCanShoot = true;
+        fireIndicator.SetActive(true);
     }
 
     void OnTriggerEnter(Collider collision)
