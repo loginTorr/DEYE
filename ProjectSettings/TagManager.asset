@@ -16,6 +16,7 @@ TagManager:
   - hitIndicator
   - Goon
   - HealFountain
+  - InstaDeath
   layers:
   - Default
   - TransparentFX

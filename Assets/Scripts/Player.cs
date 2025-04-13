@@ -31,8 +31,9 @@ public class Player : MonoBehaviour
     private bool hasHealed = false;
     private float xRotation = 0f;
 
-    public GameObject HellRoom;
+    public Material HeavenBox;
     public GameObject HeavenRoom;
+    public GameObject HellRoom;
 
     // Start is called before the first frame update
     void Start()
@@ -244,6 +245,11 @@ public class Player : MonoBehaviour
                 playerHealth = 100f;
             }
             hasHealed = true;
+
+        if (collision.CompareTag("IntaTag"))
+            {
+                KillPlayer();
+            }
         }
     }
 
@@ -274,6 +280,10 @@ public class Player : MonoBehaviour
     IEnumerator SwitchRoom()
     {
         //teleport player
+        yield return new WaitForSeconds(4f);
+        RenderSettings.skybox = HeavenBox;
+        HeavenRoom.SetActive(true);
+        HellRoom.SetActive(false);
         yield return new WaitForSeconds(2f);
         CameraFade.fadeInstance.FadeIn();
 
