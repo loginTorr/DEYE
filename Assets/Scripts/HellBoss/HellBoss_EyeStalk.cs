@@ -11,6 +11,7 @@ enum HellBossState { Wait, Laser, Wave, Envirnoment }
 public class HellBoss_EyeStalk : MonoBehaviour
 {
     public Animator anim;
+    public Animator tendrilanim;
 
     public float health = 500f;
     public float followSpeed;
@@ -22,8 +23,6 @@ public class HellBoss_EyeStalk : MonoBehaviour
     public GameObject eye;
     public GameObject laser;
     public GameObject goomba;
-    public GameObject tendrils;
-
 
     private bool isLaser;
     private bool isWave;
@@ -109,7 +108,6 @@ public class HellBoss_EyeStalk : MonoBehaviour
             count++;
             yield return new WaitForSeconds(1f);
         }
-        yield return new WaitForSeconds(5.0f);
         HellState = HellBossState.Envirnoment;
         isWave = false;
     }
@@ -117,9 +115,16 @@ public class HellBoss_EyeStalk : MonoBehaviour
     IEnumerator EnvironemntAttack()
     {
         Debug.Log("Enviro");
+        
         yield return new WaitForSeconds(3.0f);
         HellState = HellBossState.Wait;
         isEnvironment = false;
+        tendrilanim.SetTrigger("Spawn");
+        yield return new WaitForSeconds(3.0f);
+        tendrilanim.SetTrigger("Stretch");
+        yield return new WaitForSeconds(5.0f);
+        tendrilanim.SetTrigger("Despawn");
+        yield return new WaitForSeconds(3.0f);
 
     }
 
