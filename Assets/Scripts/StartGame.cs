@@ -26,6 +26,6 @@ public class StartGame : MonoBehaviour
 
     void GameStart()
     {
-        SceneManager.LoadScene("LeeScene");
+        SceneManager.LoadScene("LogScene 2");
     }
 }
