@@ -5,7 +5,7 @@ using System.Diagnostics.Contracts;
 using System.Threading;
 using UnityEngine;
 
-enum HeavenBossState { Wait, Laser, Wave, Envirnoment }
+enum HeavenBossState { Wait, Laser, Wave, Environment }
 
 
 public class HeavenBoss_Eyengel : MonoBehaviour
@@ -13,9 +13,11 @@ public class HeavenBoss_Eyengel : MonoBehaviour
     //public Animator anim;
     //public Animator tendrilanim;
 
-    public float health = 500f;
+    public float health = 1500f;
     public float followSpeed;
     public int count;
+    public int platformCount;
+    public int bulletWaveCount;
 
     public Transform PlayerPos;
     public Transform EyePos;
@@ -23,6 +25,9 @@ public class HeavenBoss_Eyengel : MonoBehaviour
     public GameObject eye;
     public GameObject laser;
     public GameObject goomba;
+    public GameObject eyengelBulletPrefab;
+
+    public GameObject[] platforms;
 
     private bool isLaser;
     private bool isWave;
@@ -46,29 +51,30 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         HeavenBossInstance = this;
         Invoke("Spawn", 1f);
         HeavenState = HeavenBossState.Laser;
+        platformCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var step = followSpeed * Time.deltaTime;
-        Quaternion rot = transform.rotation;
-
-        transform.LookAt(PlayerPos.transform);
-        transform.rotation = Quaternion.Lerp(rot, transform.rotation, step);
 
         if (health <= 0f) { Destroy(gameObject); }
+
+        if (!isEnviroment)
+        {
+            transform.LookAt(PlayerPos.transform);
+        }
 
         if (isLaser == false && isWave == false && isEnvironment == false)
         {
 
             switch (HellState)
             {
-                case HellBossState.Wait:
+                case HeavenBossState.Wait:
                     Invoke("StartAttack", 2f); Debug.Log("StartAtack");
                     break;
 
-                case HellBossState.Laser:
+                case HeavenBossState.Laser:
                     Debug.Log("LaserState");
                     isLaser = true;
                     StartCoroutine(LaserAttack());
@@ -76,15 +82,15 @@ public class HeavenBoss_Eyengel : MonoBehaviour
                     //set case.Wait
                     break;
 
-                case HellBossState.Wave:
+                case HeavenBossState.Wave:
                     Debug.Log("Wave");
                     isWave = true;
                     StartCoroutine(WaveAttack());
                     break;
 
-                case HellBossState.Envirnoment:
-                    isEnvironment = true;
-                    StartCoroutine(EnvironemntAttack());
+                case HeavenBossState.Envirment:
+                    isEnvironment = true;on
+                    StartCoroutine(EnvironmentAttack());
                     break;
             }
         }
@@ -93,15 +99,26 @@ public class HeavenBoss_Eyengel : MonoBehaviour
 
     IEnumerator LaserAttack()
     {
-        yield return new WaitForSeconds(5.0f);
-        followSpeed = 0.8f;
-        laser.SetActive(true); Debug.Log("startLaser");
-        yield return new WaitForSeconds(10.0f);
-        followSpeed = 1f;
-        laser.SetActive(false); Debug.Log("endLaser");
-        isLaser = false; 
-        HellState = HellBossState.Wave;
+        yield return new WaitForSeconds(2.0f);
+        int bulletCount = 5;
+        while (bulletCount > 0)
+        {
+            eyengelBullet = Instantiate(eyengelBulletPrefab, something.position, something.rotation);
+            bulletCount -= 1;
+            yield return new WaitForSeconds(0.3f);
 
+        }
+
+        isLaser = false;
+
+        if (bulletWaveCount > 0)
+        {
+            HeavenState = HeavenBossState.Laser;
+        }
+        else
+        {
+            HeavenState = HeavenBossState.Wave;
+        }
     }
 
     IEnumerator WaveAttack()
@@ -119,19 +136,21 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         isWave = false;
     }
 
-    IEnumerator EnvironemntAttack()
+    IEnumerator EnvironmentAttack()
     {
         Debug.Log("Enviro");
-        
-        yield return new WaitForSeconds(3.0f);
-        HellState = HellBossState.Wait;
+        if (platformCount >= 7)
+        {
+            transform.LookAt(platforms[platformCount])
+            yield return new WaitForSeconds(5.0f);
+            laser.SetActive(true); Debug.Log("startLaser");
+            yield return new WaitForSeconds(7.0f);
+            laser.SetActive(false); Debug.Log("endLaser");
+            platformCount += 1;
+        }
         isEnvironment = false;
-        tendrilanim.SetTrigger("Spawn");
-        yield return new WaitForSeconds(3.0f);
-        tendrilanim.SetTrigger("Stretch");
-        yield return new WaitForSeconds(5.0f);
-        tendrilanim.SetTrigger("Despawn");
-        yield return new WaitForSeconds(3.0f);
+        bulletWaveCount = 3;
+        HellState = HellBossState.Laser;
 
     }
 
@@ -144,7 +163,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
 
     void StartAttack()
     {
-        HellState = HellBossState.Laser;
+        HeavenState = HeavenBossState.Laser;
     }
 
     public void HitByRay()

@@ -146,15 +146,10 @@ public class Player : MonoBehaviour
                     {
                         goon.HitByRay();
                     }
-                    HellBossStalkShot hellBossStalk = hit.collider.GetComponent<HellBossStalkShot>();
-                    if (hellBossStalk != null)
+                    HellBoss_EyeStalk hellBoss = hit.collider.GetComponent<HellBoss_EyeStalk>();
+                    if (hellBoss != null)
                     {
-                        hellBossStalk.HitByRay();
-                    }
-                    HellBossEyeShot hellBossEye = hit.collider.GetComponent<HellBossEyeShot>();
-                    if (hellBossEye != null)
-                    {
-                        hellBossEye.HitByRay();
+                        hellBoss.HitByRay();
                     }
                 }
             }
