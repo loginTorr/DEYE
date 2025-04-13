@@ -70,6 +70,7 @@ public class GoonMain : MonoBehaviour
 
     public void HitByRay()
     {
-        health -= 5;
+        health -= 5f;
     }
+
 }

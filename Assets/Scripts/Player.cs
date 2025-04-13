@@ -19,9 +19,9 @@ public class Player : MonoBehaviour
     public float range = 100f;
     public LayerMask hitMask;
     public TextMeshProUGUI txtHealth;
-    public GameObject fireIndicator;
     public Transform[] hitScanOrigins;
     public ParticleSystem muzzleFlash;
+    public GameObject hitIndicate;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -153,16 +153,19 @@ public class Player : MonoBehaviour
                     if (goon != null)
                     {
                         goon.HitByRay();
+                        hitIndicate.SetActive(true);
+                        Invoke("deactiveHitIndicate", 0.2f);
                     }
                     HellBoss_EyeStalk hellBoss = hit.collider.GetComponent<HellBoss_EyeStalk>();
                     if (hellBoss != null)
                     {
                         hellBoss.HitByRay();
+                        hitIndicate.SetActive(true);
+                        Invoke("deactiveHitIndicate", 0.2f);
                     }
                 }
             }
             muzzleFlash.Play();
-            fireIndicator.SetActive(false);
             gunCanShoot = false;
             Invoke("GunTimer", 0.5f);
         }
@@ -188,7 +191,6 @@ public class Player : MonoBehaviour
         }
 
         gunCanShoot = true;
-        fireIndicator.SetActive(true);
     }
 
     void OnTriggerEnter(Collider collision)
@@ -239,6 +241,11 @@ public class Player : MonoBehaviour
     void KillPlayer()
     {
         playerHealth -= 100f;
+    }
+
+    void deactiveHitIndicate()
+    {
+        hitIndicate.SetActive(false);
     }
 
     public void LoadGameOver()

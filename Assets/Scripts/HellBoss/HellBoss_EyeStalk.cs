@@ -150,8 +150,9 @@ public class HellBoss_EyeStalk : MonoBehaviour
     }
 
     public void HitByRay()
-    {   
-        health -= 5;
+    {
+        health -= 5f;
     }
+
 
 }
