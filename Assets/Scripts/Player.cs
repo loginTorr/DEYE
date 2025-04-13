@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
     public float playerHealth = 100f;
     public float range = 100f;
     public LayerMask hitMask;
-    public float radius = 0.75f;
     public TextMeshProUGUI txtHealth;
     public GameObject fireIndicator;
+    public Transform[] hitScanOrigins;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -133,27 +133,29 @@ public class Player : MonoBehaviour
                     break;
             }
 
-            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-            RaycastHit hit;
-
-            if (Physics.SphereCast(ray, radius, out hit, range, hitMask))
+            foreach (Transform hitScanOrigin in hitScanOrigins)
             {
-                GoonMain goon = hit.collider.GetComponent<GoonMain>();
-                if (goon != null)
-                {
-                    goon.HitByRay();
-                }
-                HellBossStalkShot hellBossStalk = hit.collider.GetComponent<HellBossStalkShot>();
-                if (hellBossStalk != null)
-                {
-                    hellBossStalk.HitByRay();
-                }
-                HellBossEyeShot hellBossEye = hit.collider.GetComponent<HellBossEyeShot>();
-                if (hellBossEye != null)
-                {
-                    hellBossEye.HitByRay();
-                }
+                Ray ray = new Ray(hitScanOrigin.transform.position, hitScanOrigin.transform.forward);
+                RaycastHit hit;
 
+                if (Physics.Raycast(ray, out hit, range, hitMask))
+                {
+                    GoonMain goon = hit.collider.GetComponent<GoonMain>();
+                    if (goon != null)
+                    {
+                        goon.HitByRay();
+                    }
+                    HellBossStalkShot hellBossStalk = hit.collider.GetComponent<HellBossStalkShot>();
+                    if (hellBossStalk != null)
+                    {
+                        hellBossStalk.HitByRay();
+                    }
+                    HellBossEyeShot hellBossEye = hit.collider.GetComponent<HellBossEyeShot>();
+                    if (hellBossEye != null)
+                    {
+                        hellBossEye.HitByRay();
+                    }
+                }
             }
 
             fireIndicator.SetActive(false);

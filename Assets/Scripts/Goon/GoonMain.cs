@@ -11,12 +11,19 @@ public class GoonMain : MonoBehaviour
     public Transform target;
     public Transform eyeball;
     public GameObject goonBeamPrefab;
+    public Color hitEmissionColor = Color.white;
+    public float emissionIntensity = 1.5f;
     
     private bool beamReady = true;
+    private Renderer rend;
+    private Material mat;
 
     // Start is called before the first frame update
     void Start()
     {
+        rend = GetComponent<Renderer>();
+        mat = rend.material;
+        mat.EnableKeyword("_EMISSION");
         if (target == null) 
         {
             if (GameObject.FindWithTag("Player") != null)
@@ -67,6 +74,14 @@ public class GoonMain : MonoBehaviour
 
     public void HitByRay()
     {
-        health -= 10f;
+        health -= 4;
+        Color hitColor = hitEmissionColor * emissionIntensity;
+        mat.SetColor("_EmissionColor", hitColor);
+        Invoke("ResetColor", 0.2f);
+    }
+
+    void ResetColor()
+    {
+        mat.SetColor("_EmissionColor", Color.black);
     }
 }
