@@ -124,8 +124,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowDirection: {r: 0.1, g: 0.5, b: 0, a: 0}
-    - _FoamColor: {r: 13.721382, g: 9.463191, b: 1.5274734, a: 0}
-    - _LavaColor: {r: 0.85660374, g: 0.69538444, b: 0.21172658, a: 0}
+    - _FoamColor: {r: 0, g: 0.53446704, b: 19.069681, a: 0}
+    - _LavaColor: {r: 0, g: 0.07613055, b: 0.5254902, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7005793015573890331
