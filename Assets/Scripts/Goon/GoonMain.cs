@@ -13,6 +13,7 @@ public class GoonMain : MonoBehaviour
     public GameObject goonBeamPrefab;
     public Color hitEmissionColor = Color.white;
     public float emissionIntensity = 1.5f;
+    public AudioSource audioSrc;
     
     private bool beamReady = true;
     private Renderer rend;
@@ -21,6 +22,7 @@ public class GoonMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc.volume = 0.3f;
         rend = GetComponent<Renderer>();
         mat = rend.material;
         mat.EnableKeyword("_EMISSION");
@@ -62,6 +64,7 @@ public class GoonMain : MonoBehaviour
 
     void FireBeam()
     {
+        audioSrc.Play();
         GameObject goonBeam = Instantiate(goonBeamPrefab, eyeball.position, eyeball.rotation);
         beamReady = false;
         Invoke("ReadyBeam", 5f);
