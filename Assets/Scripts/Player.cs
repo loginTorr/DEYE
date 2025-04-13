@@ -91,8 +91,20 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && DoubleJumpReady)
         {
+            moveSpeed = 8f;
+
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             DoubleJumpReady = false;
+        }
+
+        if (!isGrounded && DoubleJumpReady)
+        {
+            moveSpeed = 12f;
+        }
+
+        if (isGrounded)
+        {
+            moveSpeed = 15;
         }
 
         velocity.y += gravity * Time.deltaTime;
