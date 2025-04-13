@@ -22,13 +22,13 @@ public class Player : MonoBehaviour
     public Transform[] hitScanOrigins;
     public ParticleSystem muzzleFlash;
     public GameObject hitIndicate;
+    public bool hasHealed = false;
 
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
     private bool DoubleJumpReady;
     private bool gunCanShoot = true;
-    private bool hasHealed = false;
     private float xRotation = 0f;
 
     public Material HeavenBox;
@@ -208,6 +208,12 @@ public class Player : MonoBehaviour
         {
             Destroy(collision.gameObject);
             playerHealth -= 5f;
+        }
+
+        if (collision.CompareTag("HeavenBeam"))
+        {
+            Destroy(collision.gameObject);
+            playerHealth -= 10f;
         }
 
         if (collision.CompareTag("Laser"))

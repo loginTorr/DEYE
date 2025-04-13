@@ -17,6 +17,7 @@ TagManager:
   - Goon
   - HealFountain
   - InstaDeath
+  - HeavenBeam
   layers:
   - Default
   - TransparentFX

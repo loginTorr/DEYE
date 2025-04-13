@@ -22,6 +22,7 @@ public class SoulPiece : MonoBehaviour
         if (dist < 5 && Input.GetKeyDown(KeyCode.E))
         {
             PlayerScript.KeyPiece1 = true;
+            PlayerScript.hasHealed = false;
             BossDoor.SetActive(false);
             gameObject.SetActive(false);
         }
