@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Invoke("KillPlayer", 3f);
+        //Invoke("KillPlayer", 3f);
     }
 
     // Update is called once per frame
