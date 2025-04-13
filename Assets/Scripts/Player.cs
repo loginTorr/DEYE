@@ -219,6 +219,7 @@ public class Player : MonoBehaviour
         {
             //set PlayerPos to First Platform
             //fade in - fade out
+            CameraFade.fadeInstance.FadeOut();
             StartCoroutine("SwitchRoom");
             HellRoom.SetActive(false);
             HeavenRoom.SetActive(true);
@@ -247,7 +248,6 @@ public class Player : MonoBehaviour
 
     IEnumerator SwitchRoom()
     {
-        CameraFade.fadeInstance.FadeOut();
         //teleport player
         yield return new WaitForSeconds(2f);
         CameraFade.fadeInstance.FadeIn();
