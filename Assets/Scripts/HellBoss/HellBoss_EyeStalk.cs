@@ -142,14 +142,12 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
     public void EyeHit()
     {
-        Debug.Log("Eye Health Drop");
-        health -= 20f;
+        health -= 8f;
     }
 
     public void StalkHit()
     {
-        Debug.Log("Stalk Health Drop");
-        health -= 10f;
+        health -= 4f;
     }
 
 }
