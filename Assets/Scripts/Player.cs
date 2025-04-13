@@ -163,6 +163,13 @@ public class Player : MonoBehaviour
                         hitIndicate.SetActive(true);
                         Invoke("deactiveHitIndicate", 0.2f);
                     }
+                    HeavenBoss_Eyengel heavenBoss = hit.collider.GetComponent<HeavenBoss_Eyengel>();
+                    if (heavenBoss != null)
+                    {
+                        heavenBoss.HitByRay();
+                        hitIndicate.SetActive(true);
+                        Invoke("deactiveHitIndicate", 0.2f);
+                    }
                 }
             }
             muzzleFlash.Play();
