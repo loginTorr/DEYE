@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
         if (isGrounded)
         {
-            moveSpeed = 15;
+            moveSpeed = 15f;
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -116,6 +116,23 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && gunCanShoot)
         {
+            int ShootClip = Random.Range(1, 5);
+            switch (ShootClip)
+            {
+                case 1:
+                    SoundManager.Play(SoundType.SHOTGUN_PUNCH_1);
+                    break;
+                case 2:
+                    SoundManager.Play(SoundType.SHOTGUN_PUNCH_2);
+                    break;
+                case 3:
+                    SoundManager.Play(SoundType.SHOTGUN_PUNCH_3);
+                    break;
+                case 4:
+                    SoundManager.Play(SoundType.SHOTGUN_PUNCH_4);
+                    break;
+            }
+
             Ray ray = new Ray(cam.transform.position, cam.transform.forward);
             RaycastHit hit;
 
@@ -147,6 +164,23 @@ public class Player : MonoBehaviour
 
     void GunTimer()
     {
+        int loadClip = Random.Range(1, 5);
+        switch (loadClip)
+        {
+            case 1:
+                SoundManager.Play(SoundType.SHOTGUN_LOAD_1);
+                break;
+            case 2:
+                SoundManager.Play(SoundType.SHOTGUN_LOAD_2);
+                break;
+            case 3:
+                SoundManager.Play(SoundType.SHOTGUN_LOAD_3);
+                break;
+            case 4:
+                SoundManager.Play(SoundType.SHOTGUN_LOAD_4);
+                break;
+        }
+
         gunCanShoot = true;
         fireIndicator.SetActive(true);
     }
