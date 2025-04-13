@@ -12,6 +12,7 @@ TagManager:
   - Laser
   - Lava
   - Tendril
+  - LevelTrans
   layers:
   - Default
   - TransparentFX

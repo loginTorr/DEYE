@@ -13,6 +13,8 @@ public class HellBoss_EyeStalk : MonoBehaviour
     public Animator anim;
     public Animator tendrilanim;
 
+    public GameObject SoulPiece;
+
     public float health = 500f;
     public float followSpeed;
     public int count;
@@ -57,7 +59,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
         transform.LookAt(PlayerPos.transform);
         transform.rotation = Quaternion.Lerp(rot, transform.rotation, step);
 
-        if (health <= 0f) { Destroy(gameObject); }
+        if (health <= 0f) { SoulPiece.SetActive(true);  Destroy(gameObject); }
 
         if (isLaser == false && isWave == false && isEnvironment == false)
         {

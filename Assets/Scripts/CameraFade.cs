@@ -7,6 +7,7 @@ public class CameraFade : MonoBehaviour
 {
     public Image fadeImage;
     public float fadeDuration = 1f;
+    internal static object fadeInstace;
 
     public static CameraFade fadeInstance { get; private set; }
 

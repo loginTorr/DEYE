@@ -6,6 +6,9 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    public Animator anim;
+
+    public bool KeyPiece1;
     public float moveSpeed = 15f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
@@ -27,9 +30,13 @@ public class Player : MonoBehaviour
     private bool gunCanShoot = true;
     private float xRotation = 0f;
 
+    public GameObject HellRoom;
+    public GameObject HeavenRoom;
+
     // Start is called before the first frame update
     void Start()
     {
+        KeyPiece1 = false;
         CameraFade.fadeInstance.FadeIn();
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -79,7 +86,7 @@ public class Player : MonoBehaviour
             velocity.y = -2f;
 
         float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical"); 
+        float v = Input.GetAxis("Vertical");
 
         Vector3 move = (cam.forward * v + cam.right * h).normalized;
         move.y = 0;
@@ -91,7 +98,7 @@ public class Player : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && DoubleJumpReady)
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && DoubleJumpReady && KeyPiece1)
         {
             moveSpeed = 8f;
 
@@ -117,6 +124,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && gunCanShoot)
         {
+            anim.SetTrigger("Fire");
             int ShootClip = Random.Range(1, 5);
             switch (ShootClip)
             {
@@ -150,11 +158,6 @@ public class Player : MonoBehaviour
                     if (hellBoss != null)
                     {
                         hellBoss.HitByRay();
-                    }
-                    HeavenBoss_Eyengel heavenBoss = hit.collider.GetComponent<HeavenBoss_Eyengel>();
-                    if (heavenBoss != null)
-                    {
-                        heavenBoss.HitByRay();
                     }
                 }
             }
@@ -198,30 +201,57 @@ public class Player : MonoBehaviour
 
         if (collision.CompareTag("Laser"))
         {
-            playerHealth -= 15;
+            playerHealth -= 15f;
         }
-    }
 
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.CompareTag("Laser"))
+        if (collision.CompareTag("Lava"))
         {
-            playerHealth -= 5;
+            playerHealth -= 10f;
+
+        }
+
+        if (collision.CompareTag("Tendril"))
+        {
+            playerHealth -= 5f;
+        }
+
+        if (collision.CompareTag("LevelTrans"))
+        {
+            //set PlayerPos to First Platform
+            //fade in - fade out
+            StartCoroutine("SwitchRoom");
+            HellRoom.SetActive(false);
+            HeavenRoom.SetActive(true);
+            Destroy(collision.gameObject);
         }
     }
 
-    void Die() {
+
+    void Die()
+    {
         cam.localRotation = Quaternion.Euler(0f, 0f, 90f);
         cam.localPosition = new Vector3(0f, -0.5f, 0f);
         CameraFade.fadeInstance.FadeOut();
         Invoke("LoadGameOver", 2f);
     }
 
-    void KillPlayer() {
+    void KillPlayer()
+    {
         playerHealth -= 100f;
     }
 
-    public void LoadGameOver() {
-        SceneManager.LoadScene("GameOverScene");    
+    public void LoadGameOver()
+    {
+        SceneManager.LoadScene("GameOverScene");
+    }
+
+    IEnumerator SwitchRoom()
+    {
+        CameraFade.fadeInstance.FadeOut();
+        //teleport player
+        yield return new WaitForSeconds(2f);
+        CameraFade.fadeInstance.FadeIn();
+
+
     }
 }
