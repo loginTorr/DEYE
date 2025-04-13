@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI txtHealth;
     public GameObject fireIndicator;
     public Transform[] hitScanOrigins;
+    public ParticleSystem muzzleFlash;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -157,7 +158,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-
+            muzzleFlash.Play();
             fireIndicator.SetActive(false);
             gunCanShoot = false;
             Invoke("GunTimer", 0.5f);
