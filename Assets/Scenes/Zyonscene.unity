@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5dc9f2ac2734115448dd79d8a2deb75d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1198,6 +1198,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cab1cd5f94fab54bb796bb879393821, type: 3}
+--- !u!1001 &5250516621049207010
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 97.24632
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 73.725464
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -56.68294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738370166434193697, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371037486769126299, guid: d3a3de6c30df8de41b81457bcc69af70,
+        type: 3}
+      propertyPath: m_Name
+      value: HeavenEyeBoss (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3a3de6c30df8de41b81457bcc69af70, type: 3}
 --- !u!1001 &5251852003138245002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1266,6 +1334,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ba2e7d9034426343b13ef6ec1c58b95, type: 3}
+--- !u!1001 &7148272878227396777
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 108.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 75.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309251790156338894, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1081284412577696884, guid: 37efc5cdc27f93b418fa2c26f6def0b0,
+        type: 3}
+      propertyPath: m_Name
+      value: HeavenEye
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37efc5cdc27f93b418fa2c26f6def0b0, type: 3}
 --- !u!1001 &7359230206705008424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1421,3 +1557,5 @@ SceneRoots:
   - {fileID: 8395711304738544684}
   - {fileID: 5251852003138245002}
   - {fileID: 1965943981161025600}
+  - {fileID: 5250516621049207010}
+  - {fileID: 7148272878227396777}
