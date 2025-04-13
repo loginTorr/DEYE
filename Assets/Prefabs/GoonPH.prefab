@@ -245,7 +245,7 @@ MonoBehaviour:
   maxDist: 60
   target: {fileID: 0}
   eyeball: {fileID: 5447145662734992815}
-  goonBeamPrefab: {fileID: 3953620530044103054, guid: 424cecf0547e71645893f9f0dd7bd86a,
+  goonBeamPrefab: {fileID: 7056026664861104207, guid: 1e9369769a807cb449d19dab20c1b11a,
     type: 3}
   hitEmissionColor: {r: 1, g: 1, b: 1, a: 1}
   emissionIntensity: 0.5
