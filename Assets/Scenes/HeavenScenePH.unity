@@ -346,7 +346,7 @@ MonoBehaviour:
   - {fileID: 1105254215}
   laser: {fileID: 361090601}
   goomba: {fileID: 7020239085396891159, guid: 68b74b703c075c643a29a96592978f45, type: 3}
-  eyengelBulletPrefab: {fileID: 3953620530044103054, guid: 424cecf0547e71645893f9f0dd7bd86a,
+  eyengelBulletPrefab: {fileID: 9034670265857186582, guid: 28ec499e8ff43a847b52ff1632706a68,
     type: 3}
   platforms:
   - {fileID: 179255035}
