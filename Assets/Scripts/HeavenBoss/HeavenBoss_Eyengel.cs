@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Threading;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 enum HeavenBossState { Wait, Laser, Wave, Environment }
@@ -178,5 +179,9 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         health -= 5f;
     }
 
+    void WinScreen()
+    {
+        SceneManager.LoadScene("WinScene");
+    }
 
 }
