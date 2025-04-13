@@ -158,6 +158,19 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             playerHealth -= 5f;
         }
+
+        if (collision.CompareTag("Laser"))
+        {
+            playerHealth -= 15;
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.CompareTag("Laser"))
+        {
+            playerHealth -= 5;
+        }
     }
 
     void Die() {

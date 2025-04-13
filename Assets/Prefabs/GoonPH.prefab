@@ -218,7 +218,7 @@ MonoBehaviour:
   speed: 10
   minDist: 15
   maxDist: 60
-  target: {fileID: 0}
+  target: {fileID: 66587873713602698, guid: 9e860388cadd27641ad31fc6b66c7f98, type: 3}
   eyeball: {fileID: 5447145662734992815}
   goonBeamPrefab: {fileID: 3953620530044103054, guid: 424cecf0547e71645893f9f0dd7bd86a,
     type: 3}

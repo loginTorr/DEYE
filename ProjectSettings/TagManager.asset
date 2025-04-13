@@ -9,6 +9,7 @@ TagManager:
   - CinemachineTarget
   - Bounds
   - GoonBeam
+  - Laser
   layers:
   - Default
   - TransparentFX
