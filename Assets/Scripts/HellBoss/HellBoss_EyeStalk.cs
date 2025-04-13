@@ -37,7 +37,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPos == null) 
+        if (PlayerPos == null)
         {
             if (GameObject.FindWithTag("Player") != null)
             {
@@ -59,7 +59,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
         transform.LookAt(PlayerPos.transform);
         transform.rotation = Quaternion.Lerp(rot, transform.rotation, step);
 
-        if (health <= 0f) { SoulPiece.SetActive(true);  Destroy(gameObject); }
+        if (health <= 0f) { SoulPiece.SetActive(true); Destroy(gameObject); }
 
         if (isLaser == false && isWave == false && isEnvironment == false)
         {
@@ -80,6 +80,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
                 case HellBossState.Wave:
                     Debug.Log("Wave");
+                    count = 0;
                     isWave = true;
                     StartCoroutine(WaveAttack());
                     break;
@@ -95,13 +96,13 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
     IEnumerator LaserAttack()
     {
-        yield return new WaitForSeconds(5.0f);
-        followSpeed = 0.8f;
-        laser.SetActive(true); Debug.Log("startLaser");
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(3.0f);
         followSpeed = 1f;
+        laser.SetActive(true); Debug.Log("startLaser");
+        yield return new WaitForSeconds(7.0f);
+        followSpeed = 1.5f;
         laser.SetActive(false); Debug.Log("endLaser");
-        isLaser = false; 
+        isLaser = false;
         HellState = HellBossState.Wave;
 
     }
@@ -109,7 +110,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
     IEnumerator WaveAttack()
     {
         yield return new WaitForSeconds(3f);
-        while (count <= 10)
+        while (count <= 5)
         {
             float randomX = UnityEngine.Random.Range(0f, 70f);
             float RandomZ = UnityEngine.Random.Range(150f, 210f);
@@ -124,7 +125,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
     IEnumerator EnvironemntAttack()
     {
         Debug.Log("Enviro");
-        
+
         yield return new WaitForSeconds(3.0f);
         HellState = HellBossState.Wait;
         isEnvironment = false;
@@ -151,8 +152,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
     public void HitByRay()
     {
-        health -= 5f;
+        health -= 5;
     }
-
 
 }
