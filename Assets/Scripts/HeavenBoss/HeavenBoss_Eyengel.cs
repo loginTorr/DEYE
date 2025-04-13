@@ -5,13 +5,13 @@ using System.Diagnostics.Contracts;
 using System.Threading;
 using UnityEngine;
 
-enum HellBossState { Wait, Laser, Wave, Envirnoment }
+enum HeavenBossState { Wait, Laser, Wave, Envirnoment }
 
 
-public class HellBoss_EyeStalk : MonoBehaviour
+public class HeavenBoss_Eyengel : MonoBehaviour
 {
-    public Animator anim;
-    public Animator tendrilanim;
+    //public Animator anim;
+    //public Animator tendrilanim;
 
     public float health = 500f;
     public float followSpeed;
@@ -28,9 +28,9 @@ public class HellBoss_EyeStalk : MonoBehaviour
     private bool isWave;
     private bool isEnvironment;
 
-    private HellBossState HellState;
+    private HeavenBossState HeavenState;
 
-    public static HellBoss_EyeStalk HellBossInstance { get; private set; }
+    public static HeavenBoss_Eyengel HeavenBossInstance { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +43,9 @@ public class HellBoss_EyeStalk : MonoBehaviour
             }
         }
         isLaser = false; isWave = false; isEnvironment = false;
-        HellBossInstance = this;
+        HeavenBossInstance = this;
         Invoke("Spawn", 1f);
-        HellState = HellBossState.Laser;
+        HeavenState = HeavenBossState.Laser;
     }
 
     // Update is called once per frame
@@ -147,12 +147,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
         HellState = HellBossState.Laser;
     }
 
-    public void EyeHit()
-    {
-        health -= 10f;
-    }
-
-    public void StalkHit()
+    public void HitByRay()
     {
         health -= 5f;
     }

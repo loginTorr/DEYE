@@ -77,7 +77,7 @@ public class GoonMain : MonoBehaviour
 
     public void HitByRay()
     {
-        health -= 4;
+        health -= 5;
         Color hitColor = hitEmissionColor * emissionIntensity;
         mat.SetColor("_EmissionColor", hitColor);
         Invoke("ResetColor", 0.2f);
