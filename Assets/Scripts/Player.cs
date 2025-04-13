@@ -28,10 +28,11 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CameraFade.fadeInstance.FadeIn();
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //Invoke("KillPlayer", 3f);
+        Invoke("KillPlayer", 3f);
     }
 
     // Update is called once per frame
@@ -107,10 +108,10 @@ public class Player : MonoBehaviour
 
             if (Physics.SphereCast(ray, radius, out hit, range, hitMask))
             {
-                GoonMain enemy = hit.collider.GetComponent<GoonMain>();
-                if (enemy != null)
+                GoonMain goon = hit.collider.GetComponent<GoonMain>();
+                if (goon != null)
                 {
-                    enemy.HitByRay();
+                    goon.HitByRay();
                 }
                 HellBossStalkShot hellBossStalk = hit.collider.GetComponent<HellBossStalkShot>();
                 if (hellBossStalk != null)
@@ -124,6 +125,7 @@ public class Player : MonoBehaviour
                 }
 
             }
+
             fireIndicator.SetActive(false);
             gunCanShoot = false;
             Invoke("GunTimer", 0.5f);
@@ -148,6 +150,7 @@ public class Player : MonoBehaviour
     void Die() {
         cam.localRotation = Quaternion.Euler(0f, 0f, 90f);
         cam.localPosition = new Vector3(0f, -0.5f, 0f);
+        CameraFade.fadeInstance.FadeOut();
         Invoke("LoadGameOver", 2f);
     }
 
@@ -155,7 +158,7 @@ public class Player : MonoBehaviour
         playerHealth -= 100f;
     }
 
-    void LoadGameOver() {
+    public void LoadGameOver() {
         SceneManager.LoadScene("GameOverScene");    
     }
 }

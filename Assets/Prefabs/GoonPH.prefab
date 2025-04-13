@@ -216,8 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 30
   speed: 10
-  minDist: 10
-  maxDist: 40
+  minDist: 15
+  maxDist: 60
   target: {fileID: 0}
   eyeball: {fileID: 5447145662734992815}
   goonBeamPrefab: {fileID: 3953620530044103054, guid: 424cecf0547e71645893f9f0dd7bd86a,

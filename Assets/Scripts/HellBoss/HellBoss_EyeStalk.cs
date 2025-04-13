@@ -12,13 +12,12 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
     public GameObject eye;
 
-
     public static HellBoss_EyeStalk HellBossInstance { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        HellBossInstance = this;
     }
 
     // Update is called once per frame
@@ -31,7 +30,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
         transform.rotation = Quaternion.Lerp(rot, transform.rotation, step);
 
 
-        if (health <= 0)
+        if (health <= 0f)
         {
             Destroy(gameObject);
         }
@@ -42,11 +41,13 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
     public void EyeHit()
     {
+        Debug.Log("Eye Health Drop");
         health -= 20f;
     }
 
     public void StalkHit()
     {
+        Debug.Log("Stalk Health Drop");
         health -= 10f;
     }
 

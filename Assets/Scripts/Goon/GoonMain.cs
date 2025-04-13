@@ -47,7 +47,7 @@ public class GoonMain : MonoBehaviour
             FireBeam();
         }
 
-        if (health <= 0)
+        if (health <= 0f)
         {
             Destroy(gameObject);
         }
