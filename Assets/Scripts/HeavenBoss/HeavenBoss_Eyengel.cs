@@ -14,15 +14,17 @@ public class HeavenBoss_Eyengel : MonoBehaviour
     //public Animator tendrilanim;
 
     public float health = 1500f;
-    public float followSpeed;
     public int count;
     public int platformCount;
     public int bulletWaveCount;
 
+    public AudioSource audioSrc;
+
     public Transform PlayerPos;
     public Transform EyePos;
+    public Transform bulletSpawn;
+    public Transform[] platformPositions;
 
-    public GameObject eye;
     public GameObject laser;
     public GameObject goomba;
     public GameObject eyengelBulletPrefab;
@@ -40,6 +42,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc.volume = 0.3f;
         if (PlayerPos == null) 
         {
             if (GameObject.FindWithTag("Player") != null)
@@ -60,7 +63,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
 
         if (health <= 0f) { Destroy(gameObject); }
 
-        if (!isEnviroment)
+        if (!isEnvironment)
         {
             transform.LookAt(PlayerPos.transform);
         }
@@ -68,7 +71,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         if (isLaser == false && isWave == false && isEnvironment == false)
         {
 
-            switch (HellState)
+            switch (HeavenState)
             {
                 case HeavenBossState.Wait:
                     Invoke("StartAttack", 2f); Debug.Log("StartAtack");
@@ -84,12 +87,13 @@ public class HeavenBoss_Eyengel : MonoBehaviour
 
                 case HeavenBossState.Wave:
                     Debug.Log("Wave");
+                    count = 0;
                     isWave = true;
                     StartCoroutine(WaveAttack());
                     break;
 
-                case HeavenBossState.Envirment:
-                    isEnvironment = true;on
+                case HeavenBossState.Environment:
+                    isEnvironment = true;   
                     StartCoroutine(EnvironmentAttack());
                     break;
             }
@@ -103,7 +107,8 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         int bulletCount = 5;
         while (bulletCount > 0)
         {
-            eyengelBullet = Instantiate(eyengelBulletPrefab, something.position, something.rotation);
+            audioSrc.Play();
+            GameObject eyengelBullet = Instantiate(eyengelBulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
             bulletCount -= 1;
             yield return new WaitForSeconds(0.3f);
 
@@ -114,6 +119,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         if (bulletWaveCount > 0)
         {
             HeavenState = HeavenBossState.Laser;
+            bulletWaveCount -= 1;
         }
         else
         {
@@ -124,42 +130,43 @@ public class HeavenBoss_Eyengel : MonoBehaviour
     IEnumerator WaveAttack()
     {
         yield return new WaitForSeconds(3f);
-        while (count <= 10)
+        while (count <= 5)
         {
-            float randomX = UnityEngine.Random.Range(0f, 70f);
-            float RandomZ = UnityEngine.Random.Range(150f, 210f);
-            Instantiate(goomba, new Vector3(randomX, 5, RandomZ), Quaternion.identity);
+            float randomX = UnityEngine.Random.Range(30f, 100f);
+            float RandomZ = UnityEngine.Random.Range(30f, 100f);
+            Instantiate(goomba, new Vector3(randomX, 10, RandomZ), Quaternion.identity);
             count++;
             yield return new WaitForSeconds(1f);
         }
-        HellState = HellBossState.Envirnoment;
+        HeavenState = HeavenBossState.Environment;
         isWave = false;
     }
 
     IEnumerator EnvironmentAttack()
     {
         Debug.Log("Enviro");
-        if (platformCount >= 7)
+        if (platformCount < platforms.Length)
         {
-            transform.LookAt(platforms[platformCount])
+            transform.LookAt(platformPositions[platformCount]);
             yield return new WaitForSeconds(5.0f);
             laser.SetActive(true); Debug.Log("startLaser");
             yield return new WaitForSeconds(7.0f);
             laser.SetActive(false); Debug.Log("endLaser");
+            platforms[platformCount].SetActive(false);
             platformCount += 1;
         }
         isEnvironment = false;
         bulletWaveCount = 3;
-        HellState = HellBossState.Laser;
+        HeavenState = HeavenBossState.Laser;
 
     }
 
 
 
-    void Spawn()
+    /*void Spawn()
     {
         anim.enabled = false;
-    }
+    }*/
 
     void StartAttack()
     {

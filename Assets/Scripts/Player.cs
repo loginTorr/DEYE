@@ -151,6 +151,11 @@ public class Player : MonoBehaviour
                     {
                         hellBoss.HitByRay();
                     }
+                    HeavenBoss_Eyengel heavenBoss = hit.collider.GetComponent<HeavenBoss_Eyengel>();
+                    if (heavenBoss != null)
+                    {
+                        heavenBoss.HitByRay();
+                    }
                 }
             }
             muzzleFlash.Play();
