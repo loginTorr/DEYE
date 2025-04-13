@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 15f;
     public float gravity = -9.81f;
-    public float jumpHeight = 2f;
+    public float jumpHeight = 3f;
+    public float doubleJumpHeight = 2f;
     public Transform cam;
     public float mouseSensitivity = 100f;
     public float playerHealth = 100f;
@@ -93,7 +94,7 @@ public class Player : MonoBehaviour
         {
             moveSpeed = 8f;
 
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocity.y = Mathf.Sqrt(doubleJumpHeight * -2f * gravity);
             DoubleJumpReady = false;
         }
 
