@@ -147,16 +147,6 @@ public class HellBoss_EyeStalk : MonoBehaviour
         HellState = HellBossState.Laser;
     }
 
-    /*public void EyeHit()
-    {
-        health -= 10f;
-    }
-
-    public void StalkHit()
-    {
-        health -= 5f;
-    }*/
-
     public void HitByRay()
     {   
         health -= 5;
