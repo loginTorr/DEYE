@@ -22,11 +22,12 @@ public class HellBoss_EyeStalk : MonoBehaviour
     public GameObject eye;
     public GameObject laser;
     public GameObject goomba;
+    public GameObject tendrils;
 
 
     private bool isLaser;
     private bool isWave;
-    private bool isEnvirnoment;
+    private bool isEnvironment;
 
     private HellBossState HellState;
 
@@ -35,7 +36,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isLaser = false; isWave = false; isEnvirnoment = false;
+        isLaser = false; isWave = false; isEnvironment = false;
         HellBossInstance = this;
         Invoke("Spawn", 1f);
         HellState = HellBossState.Laser;
@@ -52,7 +53,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
 
         if (health <= 0f) { Destroy(gameObject); }
 
-        if (isLaser == false && isWave == false && isEnvirnoment == false)
+        if (isLaser == false && isWave == false && isEnvironment == false)
         {
 
             switch (HellState)
@@ -76,6 +77,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
                     break;
 
                 case HellBossState.Envirnoment:
+                    isEnvironment = true;
                     StartCoroutine(EnvironemntAttack());
                     break;
             }
@@ -105,7 +107,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
             float RandomZ = UnityEngine.Random.Range(150f, 210f);
             Instantiate(goomba, new Vector3(randomX, 5, RandomZ), Quaternion.identity);
             count++;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
         yield return new WaitForSeconds(5.0f);
         HellState = HellBossState.Envirnoment;
@@ -116,6 +118,8 @@ public class HellBoss_EyeStalk : MonoBehaviour
     {
         Debug.Log("Enviro");
         yield return new WaitForSeconds(3.0f);
+        HellState = HellBossState.Wait;
+        isEnvironment = false;
 
     }
 
