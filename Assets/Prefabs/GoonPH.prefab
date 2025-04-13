@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 9091153012576950125}
   m_Layer: 0
   m_Name: GoonPH
-  m_TagString: Untagged
+  m_TagString: Goon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,8 +247,6 @@ MonoBehaviour:
   eyeball: {fileID: 5447145662734992815}
   goonBeamPrefab: {fileID: 7056026664861104207, guid: 1e9369769a807cb449d19dab20c1b11a,
     type: 3}
-  hitEmissionColor: {r: 1, g: 1, b: 1, a: 1}
-  emissionIntensity: 0.5
   audioSrc: {fileID: 9091153012576950125}
 --- !u!135 &4338013386041499025
 SphereCollider:

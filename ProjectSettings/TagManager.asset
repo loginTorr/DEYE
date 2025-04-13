@@ -14,6 +14,8 @@ TagManager:
   - Tendril
   - LevelTrans
   - hitIndicator
+  - Goon
+  - HealFountain
   layers:
   - Default
   - TransparentFX

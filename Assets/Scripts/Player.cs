@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool DoubleJumpReady;
     private bool gunCanShoot = true;
+    private bool hasHealed = false;
     private float xRotation = 0f;
 
     public GameObject HellRoom;
@@ -234,6 +235,16 @@ public class Player : MonoBehaviour
             HeavenRoom.SetActive(true);
             Destroy(collision.gameObject);
         }
+
+        if (collision.CompareTag("HealFountain") && !hasHealed)
+        {
+            playerHealth += 50f;
+            if (playerHealth > 100f)
+            {
+                playerHealth = 100f;
+            }
+            hasHealed = true;
+        }
     }
 
 
@@ -268,4 +279,5 @@ public class Player : MonoBehaviour
 
 
     }
+
 }
