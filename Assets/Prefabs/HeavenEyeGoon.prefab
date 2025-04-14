@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c77921c4a1bfb44296915c0a0cee6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 25
   speed: 10
-  minDist: 5
-  maxDist: 40
+  minDist: 15
+  maxDist: 60
   target: {fileID: 0}
   eyeball: {fileID: 7418040058653194153}
   goonBeamPrefab: {fileID: 9034670265857186582, guid: 32772bd2381c1d74fa7e6aa8d22e530e,

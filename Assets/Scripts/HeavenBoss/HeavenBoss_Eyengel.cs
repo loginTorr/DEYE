@@ -32,6 +32,8 @@ public class HeavenBoss_Eyengel : MonoBehaviour
 
     public GameObject[] platforms;
 
+    public Player PlayerScript;
+
     private bool isLaser;
     private bool isWave;
     private bool isEnvironment;
@@ -53,8 +55,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         }
         isLaser = false; isWave = false; isEnvironment = false;
         HeavenBossInstance = this;
-        Invoke("Spawn", 1f);
-        HeavenState = HeavenBossState.Laser;
+        HeavenState = HeavenBossState.Wait;
         platformCount = 0;
     }
 
@@ -62,7 +63,11 @@ public class HeavenBoss_Eyengel : MonoBehaviour
     void Update()
     {
 
-        if (health <= 0f) { Destroy(gameObject); }
+        if (health <= 0f) 
+        { 
+            Destroy(gameObject); 
+            PlayerScript.LoadWin();
+        }
 
         if (!isEnvironment)
         {
@@ -75,7 +80,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
             switch (HeavenState)
             {
                 case HeavenBossState.Wait:
-                    Invoke("StartAttack", 2f); Debug.Log("StartAtack");
+                    Invoke("StartAttack", 3f); Debug.Log("StartAtack");
                     break;
 
                 case HeavenBossState.Laser:
@@ -104,7 +109,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
 
     IEnumerator LaserAttack()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
         int bulletCount = 5;
         while (bulletCount > 0)
         {
@@ -157,17 +162,11 @@ public class HeavenBoss_Eyengel : MonoBehaviour
             platformCount += 1;
         }
         isEnvironment = false;
-        bulletWaveCount = 3;
+        bulletWaveCount = 2;
         HeavenState = HeavenBossState.Laser;
 
     }
 
-
-
-    /*void Spawn()
-    {
-        anim.enabled = false;
-    }*/
 
     void StartAttack()
     {
@@ -179,7 +178,7 @@ public class HeavenBoss_Eyengel : MonoBehaviour
         health -= 5f;
     }
 
-    void WinScreen()
+    public void WinScreen()
     {
         SceneManager.LoadScene("WinScene");
     }

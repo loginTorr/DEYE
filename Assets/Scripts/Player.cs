@@ -58,8 +58,7 @@ public class Player : MonoBehaviour
 
         if (playerHealth <= 0)
         {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
+            playerHealth = 0;
             Die();
         }
 
@@ -251,11 +250,11 @@ public class Player : MonoBehaviour
                 playerHealth = 100f;
             }
             hasHealed = true;
+        }
 
-        if (collision.CompareTag("IntaTag"))
-            {
-                KillPlayer();
-            }
+        if (collision.CompareTag("InstaDeath"))
+        {
+            KillPlayer();
         }
     }
 
@@ -281,6 +280,17 @@ public class Player : MonoBehaviour
     public void LoadGameOver()
     {
         SceneManager.LoadScene("GameOverScene");
+    }
+
+    public void LoadWin()
+    {
+        CameraFade.fadeInstance.FadeOut();
+        Invoke("LoadWinScene", 2f);
+    }
+
+    public void LoadWinScene()
+    {
+        SceneManager.LoadScene("WinScene");
     }
 
     IEnumerator SwitchRoom()

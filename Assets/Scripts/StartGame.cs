@@ -10,6 +10,8 @@ public class StartGame : MonoBehaviour
     void Start()
     {
         CameraFade.fadeInstance.FadeIn();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
