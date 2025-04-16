@@ -110,7 +110,7 @@ public class HellBoss_EyeStalk : MonoBehaviour
     IEnumerator WaveAttack()
     {
         yield return new WaitForSeconds(3f);
-        while (count <= 5)
+        while (count <= 4)
         {
             float randomX = UnityEngine.Random.Range(0f, 70f);
             float RandomZ = UnityEngine.Random.Range(150f, 210f);
